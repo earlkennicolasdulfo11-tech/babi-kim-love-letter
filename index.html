@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>For Babi Kim 💌</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:#ead9cc;font-family:Georgia,serif;color:#4b2928;display:flex;align-items:center;justify-content:center;padding:22px}
+.card{width:min(760px,100%);background:#fff8ed;border:1px solid #d8b9a7;box-shadow:0 18px 50px #5d393322;border-radius:18px;overflow:hidden}
+.top{padding:30px 26px 18px;text-align:center;background:linear-gradient(135deg,#f9e4dc,#fff7ec)}
+.heart{font-size:38px}
+h1{font-family:cursive;font-weight:500;font-size:38px;margin:8px 0 4px;color:#7c3438}
+.date{font-size:15px;opacity:.75}
+.letter{padding:28px;line-height:1.75;font-size:17px}
+.signature{font-family:cursive;font-size:27px;color:#7c3438;margin-top:20px}
+.lock{padding:42px 26px;text-align:center}
+.lock h1{font-size:34px}
+input{width:180px;padding:13px;border:1px solid #c99e91;border-radius:10px;text-align:center;font-size:20px;letter-spacing:7px}
+button{margin-top:14px;padding:12px 24px;border:0;border-radius:10px;background:#7c3438;color:white;font-size:16px;cursor:pointer}
+#error{color:#a53d3d;min-height:24px;margin-top:10px}
+.hidden{display:none}
+.small{font-size:13px;opacity:.7;margin-top:20px}
+</style>
+</head>
+<body>
+<main class="card">
+<section id="gate" class="lock">
+<div class="heart">💌</div>
+<h1>A little surprise for you</h1>
+<p>There is a love letter waiting inside.</p>
+<p>Enter the PIN to open it.</p>
+<input id="pin" type="password" inputmode="numeric" maxlength="12" aria-label="PIN">
+<br><button onclick="unlock()">Open my letter ♡</button>
+<div id="error"></div>
+<p class="small">Made especially for Babi Kim</p>
+</section>
+<section id="letter" class="hidden">
+<div class="top"><div class="heart">💗</div><h1>To my dearest Babi Kim</h1><div class="date">August 9, 2026 · Happy 3rd Anniversary</div></div>
+<div class="letter">
+August 9, 2026<br><br>To my dearest Babi Kim<br><br>Happy 3rd anniversary babi!! 🥰🥳 I love you sooo much 😘😊 It&#x27;s a special day for us babi, first of all karuyag ko magpasalamat hanim pagiging hardworking and unending love tas dimo pag suko han aton relationship, I am so happy tas nagpapasalamat kan Lord na umabot kit hin nga day, it&#x27;s been hard man throughout the years na damo an aton challenges tas mga away naton and I&#x27;m sorry babi bad ak danay🥲, but that challenges and away is a lesson for us to learn and mature for our own good para sa aton future babi, although harayo man kit sa isa&#x27;t-isa and namimiss naton an kada tagsa😊, diri naging hadlang para ig celebrate naton an aton anniversary but it&#x27;s still a shame since harayo ka babi, nevertheless this is the day to celebrate so bawal mag sad, I&#x27;m so happy to have you babi ko 🥰 even though busy ka na kanan work na remember mo padin ak tas na update.<br><br>I wish and pray for us both na maging stay healthy habang buhay aton relationship and tagan kit pirme ni Lord courage and strength na di kit sumuko ha kada tagsa haaton, damo pa aton mga promises tas dreams na di natutupad together, and I want us both to fight for it for our bright future together,<br><br>Kamusta kaya akon babi? you&#x27;re eating well are you? nalilipasan ka kase gutom kay 2 kana nakaka lunch, kunta okay kala dida, I miss you so much na to the point na diak nakaka sleep deritso kada gab e, as I said this is a happy day for us so don&#x27;t think na sad ak babi, I&#x27;m just worried para haim since harayo ka.<br><br>Happy anniversary again babi ko 🥰, God bless us both and stay faithful kay Lord pirme babi ko kay hiya naghahatag haaton hin kusog para diri mawakay aton pagsasama, I will always love you babi 🥰 asya muna it anak message para haakon pretty princess babi ko na kaduruto tas good pa😊😚.<br><br>Your babi always,<br>Iken
+</div>
+</section>
+</main>
+<script>
+const PIN = "0809";
+function unlock(){
+  const entered=document.getElementById('pin').value;
+  if(entered===PIN){
+    document.getElementById('gate').classList.add('hidden');
+    document.getElementById('letter').classList.remove('hidden');
+  } else {
+    document.getElementById('error').textContent='That PIN isn’t quite right. 💗';
+  }
+}
+document.getElementById('pin').addEventListener('keydown',e=>{if(e.key==='Enter')unlock()});
+</script>
+</body>
+</html>
