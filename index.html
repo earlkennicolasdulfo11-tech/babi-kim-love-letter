@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>For Babi ❤️</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}body{background:#020208;color:#fff;font-family:Arial,Helvetica,sans-serif}
+.screen{position:fixed;inset:0;display:none;overflow:hidden}.screen.active{display:flex}
+#pinScreen{align-items:center;justify-content:center;background:radial-gradient(circle at center,#171225 0,#05050c 48%,#010106 100%)}
+.pinbox{text-align:center}.lock{font-size:54px;animation:bob 1.8s ease-in-out infinite}@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.pinbox h1{font-size:clamp(25px,7vw,42px);margin:12px 0 20px}.pinbox input{width:180px;padding:13px;border:2px solid #ff5c9a;border-radius:12px;background:#090912;color:#fff;text-align:center;font-size:22px;letter-spacing:9px;outline:none}.gameBtn{margin-top:15px;padding:12px 22px;border:2px solid #ff78ad;border-radius:10px;background:#10101c;color:#fff;font-weight:800;font-size:16px;cursor:pointer;box-shadow:0 5px 0 #000;animation:bob 1.8s ease-in-out infinite}.gameBtn:active{transform:translateY(4px);box-shadow:none}#warn{height:24px;color:#ff91b9;margin-top:10px}
+#countScreen,#wordScreen,#heartScreen{align-items:center;justify-content:center;background:#03030a}.visual{position:absolute;inset:0;width:100%;height:100%}
+#count{position:relative;z-index:2;font-size:clamp(120px,30vw,230px);font-weight:900;color:#fff;text-shadow:0 0 10px #fff,0 0 35px #ff4c9d,0 0 70px #ff2d83;animation:countPop .95s cubic-bezier(.2,.9,.2,1)}
+@keyframes countPop{0%{opacity:0;transform:scale(1.8)}25%{opacity:1;transform:scale(1)}75%{opacity:1;transform:scale(1.03)}100%{opacity:0;transform:scale(.75)}}
+.word{position:relative;z-index:3;font-size:clamp(54px,15vw,115px);font-weight:900;letter-spacing:1px;text-align:center;text-shadow:0 0 8px #fff,0 0 22px #ff4b9a,0 0 50px #ff2585;animation:wordIn .8s cubic-bezier(.2,.9,.2,1) forwards}@keyframes wordIn{0%{opacity:0;transform:translateY(22px) scale(.75);filter:blur(8px)}45%{opacity:1;transform:translateY(0) scale(1.04);filter:blur(0)}100%{opacity:1;transform:scale(1)}}
+#heartCanvas{z-index:1}.heartCenter{position:relative;z-index:3;width:min(86vw,500px);height:min(86vw,500px);display:flex;align-items:center;justify-content:center;text-align:center}.heartMessage{font-size:clamp(18px,5vw,29px);font-weight:900;line-height:1.35;text-shadow:0 0 8px #fff,0 0 20px #ff4b9a;max-width:360px}.heartPhoto{position:absolute;z-index:4;bottom:3%;left:50%;transform:translateX(-50%);width:105px;height:105px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 0 20px #ff4b9a}.press{position:absolute;z-index:6;top:8%;left:50%;transform:translateX(-50%);white-space:nowrap;padding:10px 16px;background:#11111b;border:2px solid #ff6aa5;border-radius:7px;box-shadow:0 5px 0 #000;color:#fff;font-weight:900;cursor:pointer;animation:bob 1.6s ease-in-out infinite;opacity:0;pointer-events:none;transition:opacity .4s}.press.show{opacity:1;pointer-events:auto}
+#letterScreen{overflow:auto;align-items:flex-start;justify-content:center;padding:30px 12px 45px;background:radial-gradient(circle at 50% 15%,#4b203d 0,#17101d 42%,#05050b 100%)}
+#letterScreen:before,#letterScreen:after{content:'♡  ✦  ♡  ✦  ♡';position:fixed;left:0;right:0;text-align:center;color:#ff8dbb;opacity:.35;letter-spacing:12px;font-size:15px;pointer-events:none;z-index:0}#letterScreen:before{top:12px}#letterScreen:after{bottom:12px}
+.paper{position:relative;width:min(760px,100%);margin:0 auto 40px;background:linear-gradient(90deg,rgba(255,255,255,.55),transparent 8%,transparent 92%,rgba(255,255,255,.55)),repeating-linear-gradient(0deg,rgba(125,77,43,.025) 0,rgba(125,77,43,.025) 1px,transparent 1px,transparent 4px),#fff8e9;color:#3b2a26;border:1px solid #e5cfa8;border-radius:3px;padding:42px clamp(22px,6vw,58px) 34px;box-shadow:0 18px 55px rgba(0,0,0,.55),0 2px 0 rgba(255,255,255,.7) inset;line-height:1.72;font-size:16px;transform:rotate(-.25deg);z-index:1}
+.paper:before{content:'♥';position:absolute;top:14px;left:18px;color:#e85d91;font-size:25px;opacity:.75;transform:rotate(-12deg)}.paper:after{content:'♥';position:absolute;right:18px;top:15px;color:#e85d91;font-size:20px;opacity:.65;transform:rotate(14deg)}
+.paper h2{font-family:Georgia,'Times New Roman',serif;text-align:center;margin:0 0 28px;color:#a63d69;font-size:clamp(25px,7vw,38px);font-style:italic;font-weight:700}.paper h2:after{content:'  ✦  ';display:block;font-family:Arial,sans-serif;font-size:14px;color:#d66a91;margin-top:8px;letter-spacing:4px}.letter{white-space:pre-wrap;font-family:Georgia,'Times New Roman',serif}.letter::first-line{font-weight:700}.question{text-align:center;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-weight:700;color:#a63d69;margin:30px 0 8px;font-size:19px}.choice{text-align:center}.choice .gameBtn{margin:7px 5px;font-family:Georgia,'Times New Roman',serif;background:#fff0f5;color:#7e2e50;border-color:#df6d9a;box-shadow:0 5px 0 #8c3c5e}.choice .gameBtn:hover{background:#ffe3ed}
+#finalScreen{background:#010106;align-items:center;justify-content:center}.finalCanvas{position:absolute;inset:0;width:100%;height:100%}.finalMessage{position:relative;z-index:4;text-align:center;padding:25px;font-size:clamp(30px,8vw,64px);font-weight:900;text-shadow:0 0 10px #fff,0 0 30px #ff4c9d,0 0 70px #ff2382}
+</style>
+</head>
+<body>
+<section id="pinScreen" class="screen active"><div class="pinbox"><div class="lock">🔐</div><h1>Enter the PIN, babi 💗</h1><input id="pin" type="password" inputmode="numeric" maxlength="4" placeholder="••••"><br><button class="gameBtn" id="unlock">UNLOCK ❤️</button><div id="warn"></div></div></section>
+
+<section id="countScreen" class="screen"><canvas id="fallingCanvas" class="visual"></canvas><div id="count">3</div></section>
+<section id="wordScreen" class="screen"><canvas id="wordCanvas" class="visual"></canvas><div id="word" class="word"></div></section>
+<section id="heartScreen" class="screen"><canvas id="heartCanvas" class="visual"></canvas><div class="heartCenter"><div class="heartMessage">I love you so much 🥰<br>please forgive me na babi 😔</div></div><img class="heartPhoto" src="babi_photo.png" alt="❤️"><button id="press" class="press">press po didi babi 😓</button></section>
+
+<section id="letterScreen" class="screen"><article class="paper"><h2>💌 A Letter for My Babi</h2><div class="letter">September 4, 2026
+
+
+To my dearest Babi, Kim 
+
+Hello babi nakon kamusta?, are you eating well? suol pa tummy? kairo mandaw hin pirme nala masuol. I hope mabasa mo in tanan nga akon pag express han akon thoughts through this message. Belated Happy Birthday babi!! 🥰🥳 I love you sooooo muuch 🥰 miss ko na ikaw sobra babi, sorry babi dire tuhay akon pag greet haim bday I've thought a lot of things lately hehe. ahmmm I'm writing this message for you akon lablab to sincerely apologize, I'm such a bum I don't want na mawara ka pero nakakasamok ak—sorry babi bad ak 😔. And I'm sorry babi for having anxious attachment haimo I'm so so so sorry Babi 😔. And my reasons for my inconvenience is not important na kay love ko ikaw sobra ngan pirme para di kana mag inisip or ma stress, that's why I wanted for us na ig choose na ulit an isa't-isa, I wish and pray na matupad it nga blessing para haaton. We've been through a lot thank you babi for always staying by my side even at my lowest you were always there para haakon babi nga. I really hope that this message reaches your heart babi, I hope everything goes fine na like dati. My reasons doesn't matter anymore kay I don't want to lose my love, my light, and my dreams with you, diko karuyag mag end tanan karuyag ko pilion ta naton an isa't-isa, I pray na bumalik na imo love haakon ngan maging endless or forever aton love, sana mapatawad mo naak babi I miss you so much 🥺😔. 
+
+Your babi always,
+Iken</div><div class="question">you forgive me na babi? 🥺</div><div class="choice"><button class="gameBtn forgive">yes po 😚</button><button class="gameBtn forgive">of course lablab 🥰</button></div></article></section>
+
+<section id="finalScreen" class="screen"><canvas id="finalCanvas" class="finalCanvas"></canvas><div class="finalMessage">thank you so much babi, I love you sooo much 🥰</div></section>
+<audio id="music" src="those-eyes.mp3" loop></audio>
+
+<script>
+const $=id=>document.getElementById(id), screens=document.querySelectorAll('.screen');
+function show(id){screens.forEach(s=>s.classList.remove('active'));$(id).classList.add('active')}
+let musicStarted=false;function startMusic(){if(!musicStarted){musicStarted=true;$('music').volume=.22;$('music').play().catch(()=>{})}}
+$('pin').addEventListener('keydown',e=>{if(e.key==='Enter')$('unlock').click()});
+$('unlock').onclick=()=>{startMusic();if($('pin').value!=='0809'){$('warn').textContent='Wrong PIN, babi 😭';return}$('warn').textContent='';runCountdown()};
+
+// Pink falling "I LOVE YOU" particles — inspired by the supplied reference video.
+const fall=$('fallingCanvas'),fc=fall.getContext('2d');let FW,FH,fallers=[];
+function resizeFall(){FW=fall.width=innerWidth*devicePixelRatio;FH=fall.height=innerHeight*devicePixelRatio;fall.style.width=innerWidth+'px';fall.style.height=innerHeight+'px';fc.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0)}
+function initFall(){resizeFall();fallers=[];for(let i=0;i<85;i++)fallers.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,v:.35+Math.random()*1.25,s:8+Math.random()*8,a:.25+Math.random()*.65,r:(Math.random()-.5)*.5})}
+addEventListener('resize',()=>{if($('countScreen').classList.contains('active')||$('wordScreen').classList.contains('active'))resizeFall()});
+function drawFall(){fc.clearRect(0,0,innerWidth,innerHeight);for(const p of fallers){p.y+=p.v;p.x+=Math.sin(p.y*.008)*.25;if(p.y>innerHeight+20){p.y=-20;p.x=Math.random()*innerWidth}fc.save();fc.globalAlpha=p.a;fc.fillStyle='#ff4b9d';fc.font=`700 ${p.s}px Arial`;fc.fillText('I LOVE YOU',p.x,p.y);fc.restore()}if($('countScreen').classList.contains('active')||$('wordScreen').classList.contains('active'))requestAnimationFrame(drawFall)}
+
+function runCountdown(){show('countScreen');initFall();requestAnimationFrame(drawFall);let nums=['3','2','1'],i=0;function next(){if(i>=nums.length){setTimeout(runWords,250);return}$('count').textContent=nums[i++];$('count').style.animation='none';void $('count').offsetWidth;$('count').style.animation='countPop .95s cubic-bezier(.2,.9,.2,1)';setTimeout(next,1000)}next()}
+
+function runWords(){show('wordScreen');let words=["I'm","so","sorry","Babi","for","my","stupidity"];let i=0;function next(){if(i>=words.length){setTimeout(()=>showHeart(),1100);return}$('word').textContent=words[i++];$('word').style.animation='none';void $('word').offsetWidth;$('word').style.animation='wordIn .8s cubic-bezier(.2,.9,.2,1)';setTimeout(next,1050)}next()}
+
+// Particle heart outline, close in spirit to the reference's pink dotted heart.
+const hc=$('heartCanvas'),ctx=hc.getContext('2d');let particles=[],heartRunning=false;
+function resizeHeart(){hc.width=innerWidth*devicePixelRatio;hc.height=innerHeight*devicePixelRatio;hc.style.width=innerWidth+'px';hc.style.height=innerHeight+'px';ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0)}
+function makeHeart(){particles=[];let cx=innerWidth/2,cy=innerHeight*.49,scale=Math.min(innerWidth,innerHeight)*.018;for(let i=0;i<1250;i++){let t=Math.random()*Math.PI*2,x=16*Math.pow(Math.sin(t),3),y=-(13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t));let px=cx+x*scale,py=cy+y*scale;particles.push({x:px,y:py,tx:px,ty:py,vx:(Math.random()-.5)*2,vy:(Math.random()-.5)*2,life:Math.random(),size:1+Math.random()*2.2})}}
+function heartLoop(){if(!heartRunning)return;ctx.clearRect(0,0,innerWidth,innerHeight);for(const p of particles){p.x+=(p.tx-p.x)*.035;p.y+=(p.ty-p.y)*.035;p.x+=p.vx*.05;p.y+=p.vy*.05;ctx.globalAlpha=.25+Math.random()*.7;ctx.fillStyle='#ff4b9d';ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill()}ctx.globalAlpha=1;requestAnimationFrame(heartLoop)}
+function showHeart(){show('heartScreen');resizeHeart();makeHeart();heartRunning=true;heartLoop();setTimeout(()=>$('press').classList.add('show'),2300)}
+addEventListener('resize',()=>{if($('heartScreen').classList.contains('active')){resizeHeart();makeHeart()}});
+$('press').onclick=()=>show('letterScreen');
+
+document.querySelectorAll('.forgive').forEach(b=>b.onclick=()=>{show('finalScreen');startFireworks()});
+function startFireworks(){const c=$('finalCanvas'),x=c.getContext('2d');let W,H,ps=[],rs=[];function size(){W=c.width=innerWidth*devicePixelRatio;H=c.height=innerHeight*devicePixelRatio;c.style.width=innerWidth+'px';c.style.height=innerHeight+'px';x.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0)}size();addEventListener('resize',size);function burst(X,Y){for(let i=0;i<130;i++){let a=Math.random()*Math.PI*2,s=2+Math.random()*7;ps.push({x:X,y:Y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:1})}}function loop(){x.fillStyle='rgba(1,1,6,.18)';x.fillRect(0,0,innerWidth,innerHeight);if(Math.random()<.07)rs.push({x:Math.random()*innerWidth,y:innerHeight+5,vy:-(8+Math.random()*3),tx:Math.random()*innerWidth,ty:innerHeight*(.12+Math.random()*.48)});rs.forEach((r,i)=>{r.y+=r.vy;r.vy+=.08;x.fillStyle='#fff';x.fillRect(r.x,r.y,2,5);if(r.y<=r.ty){burst(r.x,r.y);rs.splice(i,1)}});ps.forEach((p,i)=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.055;p.life-=.012;x.globalAlpha=Math.max(0,p.life);x.fillStyle='#ff5ca8';x.fillRect(p.x,p.y,3,3);if(p.life<=0)ps.splice(i,1)});x.globalAlpha=1;requestAnimationFrame(loop)}loop()}
+</script>
+</body>
+</html>
